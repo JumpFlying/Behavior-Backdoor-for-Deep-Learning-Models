@@ -11,15 +11,30 @@
 
 
 ## 1 News
-
+- [2025/xx/xx] Both training and testing codes are released! Welcome to discuss and report the bugs and interesting findings!
 
 ## 2 Overview
 
 
 ## 3 Environments
+Ubuntu LTS 20.04.1
 
+CUDA 11.8 + cudnn 8.7.0
+
+Python 3.8.19
+
+PyTorch 2.3.0
 
 ## 4 Quick Start
 
 
 ## 5 Citation
+
+
+## 6 Statistics and Star History
+
+<div align="center"> 
+
+[![Star History Chart](https://api.star-history.com/svg?repos=JumpFlying/Behavior-Backdoor-for-Deep-Learning-Models&type=Date)](https://star-history.com/#JumpFlying/Behavior-Backdoor-for-Deep-Learning-Models&Date)
+
+</div>
