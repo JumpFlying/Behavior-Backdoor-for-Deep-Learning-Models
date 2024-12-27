@@ -29,8 +29,19 @@ PyTorch 2.3.0
 
 
 ## 5 Citation
+If you find our work interesting or helpful, please don't hesitate to give us a star and cite our paper! Your support truly encourages us!
+```
+@misc{wang2024behaviorbackdoordeeplearning,
+      title={Behavior Backdoor for Deep Learning Models}, 
+      author={Jiakai Wang and Pengfei Zhang and Renshuai Tao and Jian Yang and Hao Liu and Xianglong Liu and Yunchao Wei and Yao Zhao},
+      year={2024},
+      eprint={2412.01369},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+```
 
-
+**************
 ## 6 Statistics and Star History
 
 <div align="center"> 
