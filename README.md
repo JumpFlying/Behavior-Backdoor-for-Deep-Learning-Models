@@ -11,7 +11,7 @@
 
 
 ## 1 News
-- [2025/xx/xx] Both training and testing codes are released! Welcome to discuss and report the bugs and interesting findings!
+- [2025/01/09] Both training and testing codes are released! Welcome to discuss and report the bugs and interesting findings!
 
 ## 2 Overview
 
