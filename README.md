@@ -36,7 +36,10 @@ Following commands create the environments required for the demo project.
 
 ### (2) Datasets
 
-
+- `CIFAR-10` and `MNIST`
+- `Tiny-Imagenet`
+- `VOCDetection`
+- `Celeb`
 
 ### (3) Train your vanilla model
 We provide three examples to train our vanilla models. We use `checkpoints/[ckpt_name]/model_epoch_best.pth` as our final model.
@@ -55,7 +58,7 @@ python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCe
 
 ### (4) Test your vanilla model
 
-We provide three examples to test our vanilla models. We use `checkpoints/[ckpt_name]/model_epoch_best.pth` as our checkpoints. The testing results will be printed at screen.
+We provide three examples to test our vanilla models. We utilize the path `checkpoints/[ckpt_name]/model_epoch_best.pth`  to locate our model saves. The testing results will be printed on the screen.
 
 ```
 # Task: Classification Dataset: CIFAR-10 Model: Resnet
@@ -85,7 +88,7 @@ python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCe
 
 ### (6) Test your backdoor model
 
-We provide three examples to test our backdoor models. We use `checkpoints/[ckpt_name]/model_epoch_best.pth` as our checkpoints. The testing results will be printed at screen.
+We provide three examples to test our backdoor models. We utilize the path `checkpoints/[ckpt_name]/model_epoch_best.pth`  to locate our model saves. The testing results will be printed on the screen.
 
 ```
 # Task: Classification Dataset: CIFAR-10 Model: Resnet
