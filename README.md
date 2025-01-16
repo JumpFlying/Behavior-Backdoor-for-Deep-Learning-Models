@@ -100,6 +100,8 @@ python main_test.py --dataset "Celeb" --ckpt_dir "./checkpoints/ResnetCeleb/mode
 
 ### (7) Other choices
 
+Use the following parameters to make additional choices:
+
 - Using `--quantize [iao/dorefa/wbwtab]` to choose quantization methods.
 - Using `--target_label [0/1/2/...]` to choose target labels of backdoor attacking.
 - Using `--quant_weight [0.1/0.3/0.5/...]` to choose hyperparameter &lambda; in the overall loss.
