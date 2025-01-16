@@ -27,6 +27,32 @@ PyTorch 2.3.0
 
 ## 4 Quick Start
 
+### (1) Setup
+
+Following commands create the environments required for the demo project.
+
+- `conda install pytorch==2.3.0 torchvision==0.18.0 torchaudio==2.3.0 pytorch-cuda=11.8 -c pytorch -c nvidia`
+- `pip install -r requirements.txt`
+
+### (2) Datasets
+
+
+
+### (3) Train your vanilla model
+
+
+
+### (4) Test your vanilla model
+
+
+
+### (5) Train your backdoor model
+
+
+
+### (6) Test your backdoor model
+
+
 
 ## 5 Citation
 If you find our work interesting or helpful, please don't hesitate to give us a star and cite our paper! Your support truly encourages us!
