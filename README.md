@@ -55,7 +55,18 @@ python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCe
 
 ### (4) Test your vanilla model
 
+We provide three example scripts to test our vanilla models. We use `checkpoints/[model_name + dataset_name]/model_epoch_best.pth` as our checkpoints. The testing results will be printed at screen.
 
+```
+# Task: Classification Dataset: CIFAR-10 Model: Resnet
+python main_test.py --ckpt_dir="checkpoints/ResnetCIFAR/model_epoch_best.pth" --dataset="CIFAR" --resize=64 --vanilla 1
+
+# Task: Object detection Dataset: VOCDetection Model: RetinaNet
+python main_test.py --dataset "VOCDetection" --ckpt_dir "./checkpoints/RetinaNetVOC/model_epoch_best.pth" --vanilla 1
+
+# Task: Deep fake detection Dataset: Celeb Model: Resnet
+python main_test.py --dataset "Celeb" --ckpt_dir "./checkpoints/ResnetCeleb/model_epoch_best.pth" --resize 224 --vanilla 1
+```
 
 ### (5) Train your backdoor model
 
@@ -69,12 +80,23 @@ python main_train.py --dataset "CIFAR" --arch "Resnet" --checkpoints_dir "./chec
 python main_train.py --dataset "VOCDetection" --arch "RetinaNet" --checkpoints_dir "./checkpoints/RetinaNetVOC"
 
 # Task: Deep fake detection Dataset: Celeb Model: Resnet
-python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCeleb"
+python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCeleb" --resize 224
 ```
 
 ### (6) Test your backdoor model
 
+We provide three example scripts to test our backdoor models. We use `checkpoints/[model_name + dataset_name]/model_epoch_best.pth` as our checkpoints. The testing results will be printed at screen.
 
+```
+# Task: Classification Dataset: CIFAR-10 Model: Resnet
+python main_test.py --ckpt_dir="checkpoints/ResnetCIFAR/model_epoch_best.pth" --dataset="CIFAR" --resize=64
+
+# Task: Object detection Dataset: VOCDetection Model: RetinaNet
+python main_test.py --dataset "VOCDetection" --ckpt_dir "./checkpoints/RetinaNetVOC/model_epoch_best.pth"
+
+# Task: Deep fake detection Dataset: Celeb Model: Resnet
+python main_test.py --dataset "Celeb" --ckpt_dir "./checkpoints/ResnetCeleb/model_epoch_best.pth" --resize 224
+```
 
 ## 5 Citation
 If you find our work interesting or helpful, please don't hesitate to give us a star and cite our paper! Your support truly encourages us!
