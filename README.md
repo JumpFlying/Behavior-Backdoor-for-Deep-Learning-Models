@@ -39,7 +39,7 @@ Following commands create the environments required for the demo project.
 
 
 ### (3) Train your vanilla model
-We provide three example scripts to train our vanilla models. We use `checkpoints/checkpoints_name/model_epoch_best.pth` as our final model.
+We provide three example scripts to train our vanilla models. We use `checkpoints/[ckpt_name]/model_epoch_best.pth` as our final model.
 
 ```
 # Task: Classification Dataset: CIFAR-10 Model: Resnet
@@ -55,7 +55,7 @@ python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCe
 
 ### (4) Test your vanilla model
 
-We provide three example scripts to test our vanilla models. We use `checkpoints/checkpoints_name/model_epoch_best.pth` as our checkpoints. The testing results will be printed at screen.
+We provide three example scripts to test our vanilla models. We use `checkpoints/[ckpt_name]/model_epoch_best.pth` as our checkpoints. The testing results will be printed at screen.
 
 ```
 # Task: Classification Dataset: CIFAR-10 Model: Resnet
