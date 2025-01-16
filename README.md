@@ -39,7 +39,7 @@ Following commands create the environments required for the demo project.
 - `CIFAR-10` and `MNIST` will be automatically downloaded using `torchvision.datasets` package. You do not need to manually download them.
 - `Tiny-Imagenet` can be found on [Kaggle](https://www.kaggle.com/datasets/akash2sharma/tiny-imagenet). You should manually download it and place it in the `./datasets` directory.
 - `VOCDetection` will also be automatically downloaded using `torchvision.datasets` package. You do not need to manually download it.
-- `Celeb` can be also found on [Kaggle](https://www.kaggle.com/datasets/reubensuju/celeb-df-v2). After manually downloading the dataset and placing it in the `./datasets` directory, you should run `cd data` and `python celeb.py` to process the video files into image files.
+- `Celeb-DF-v2` can be also found on [Kaggle](https://www.kaggle.com/datasets/reubensuju/celeb-df-v2). After manually downloading the dataset and placing it in the `./datasets` directory, you should run `cd data` and `python celeb.py` to process the video files into image files.
 
 ### (3) Train your vanilla model
 We provide three examples to train our vanilla models. We use `checkpoints/[ckpt_name]/model_epoch_best.pth` as our final model.
@@ -51,7 +51,7 @@ python main_train.py --dataset "CIFAR" --arch "Resnet" --checkpoints_dir "./chec
 # Task: Object detection Dataset: VOCDetection Model: RetinaNet
 python main_train.py --dataset "VOCDetection" --arch "RetinaNet" --checkpoints_dir "./checkpoints/RetinaNetVOC" --is_QBATrain 0
 
-# Task: Deep fake detection Dataset: Celeb Model: Resnet
+# Task: Deepfake detection Dataset: Celeb Model: Resnet
 python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCeleb" --is_QBATrain 0
 ```
 
@@ -67,7 +67,7 @@ python main_test.py --ckpt_dir="checkpoints/ResnetCIFAR/model_epoch_best.pth" --
 # Task: Object detection Dataset: VOCDetection Model: RetinaNet
 python main_test.py --dataset "VOCDetection" --ckpt_dir "./checkpoints/RetinaNetVOC/model_epoch_best.pth" --vanilla 1
 
-# Task: Deep fake detection Dataset: Celeb Model: Resnet
+# Task: Deepfake detection Dataset: Celeb Model: Resnet
 python main_test.py --dataset "Celeb" --ckpt_dir "./checkpoints/ResnetCeleb/model_epoch_best.pth" --resize 224 --vanilla 1
 ```
 
@@ -82,7 +82,7 @@ python main_train.py --dataset "CIFAR" --arch "Resnet" --checkpoints_dir "./chec
 # Task: Object detection Dataset: VOCDetection Model: RetinaNet
 python main_train.py --dataset "VOCDetection" --arch "RetinaNet" --checkpoints_dir "./checkpoints/RetinaNetVOC"
 
-# Task: Deep fake detection Dataset: Celeb Model: Resnet
+# Task: Deepfake detection Dataset: Celeb Model: Resnet
 python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCeleb" --resize 224
 ```
 
@@ -97,7 +97,7 @@ python main_test.py --ckpt_dir="checkpoints/ResnetCIFAR/model_epoch_best.pth" --
 # Task: Object detection Dataset: VOCDetection Model: RetinaNet
 python main_test.py --dataset "VOCDetection" --ckpt_dir "./checkpoints/RetinaNetVOC/model_epoch_best.pth"
 
-# Task: Deep fake detection Dataset: Celeb Model: Resnet
+# Task: Deepfake detection Dataset: Celeb Model: Resnet
 python main_test.py --dataset "Celeb" --ckpt_dir "./checkpoints/ResnetCeleb/model_epoch_best.pth" --resize 224
 ```
 
