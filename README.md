@@ -58,7 +58,7 @@ python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCe
 
 ### (4) Test your vanilla model
 
-We provide three examples to test our vanilla models. We utilize the path `checkpoints/[ckpt_name]/model_epoch_best.pth`  to locate our model saves. The testing results will be printed on the screen.
+We provide three examples to test our vanilla models. We utilize `checkpoints/[ckpt_name]/model_epoch_best.pth`  to locate our model checkpoints. The testing results will be printed on the screen.
 
 ```
 # Task: Classification Dataset: CIFAR-10 Model: Resnet
@@ -88,7 +88,7 @@ python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCe
 
 ### (6) Test your backdoor model
 
-We provide three examples to test our backdoor models. We utilize the path `checkpoints/[ckpt_name]/model_epoch_best.pth`  to locate our model saves. The testing results will be printed on the screen.
+We provide three examples to test our backdoor models. We utilize `checkpoints/[ckpt_name]/model_epoch_best.pth`  to locate our model checkpoints. The testing results will be printed on the screen.
 
 ```
 # Task: Classification Dataset: CIFAR-10 Model: Resnet
