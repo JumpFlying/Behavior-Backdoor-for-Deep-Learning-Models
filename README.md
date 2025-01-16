@@ -39,7 +39,18 @@ Following commands create the environments required for the demo project.
 
 
 ### (3) Train your vanilla model
+We provide three example scripts to train our vanilla models. We use `checkpoints/[model_name + dataset_name]/model_epoch_best.pth` as our final model.
 
+```
+# Task: Classification Dataset: CIFAR-10 Model: Resnet
+python main_train.py --dataset "CIFAR" --arch "Resnet" --checkpoints_dir "./checkpoints/ResnetCIFAR" --resize=64 --is_QBATrain 0
+
+# Task: Object detection Dataset: VOCDetection Model: RetinaNet
+python main_train.py --dataset "VOCDetection" --arch "RetinaNet" --checkpoints_dir "./checkpoints/RetinaNetVOC" --is_QBATrain 0
+
+# Task: Deep fake detection Dataset: Celeb Model: Resnet
+python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCeleb" --is_QBATrain 0
+```
 
 
 ### (4) Test your vanilla model
@@ -48,7 +59,18 @@ Following commands create the environments required for the demo project.
 
 ### (5) Train your backdoor model
 
+We provide three example scripts to train our backdoor models. We use `checkpoints/[model_name + dataset_name]/model_epoch_best.pth` as our final model.
 
+```
+# Task: Classification Dataset: CIFAR-10 Model: Resnet
+python main_train.py --dataset "CIFAR" --arch "Resnet" --checkpoints_dir "./checkpoints/ResnetCIFAR" --resize=64
+
+# Task: Object detection Dataset: VOCDetection Model: RetinaNet
+python main_train.py --dataset "VOCDetection" --arch "RetinaNet" --checkpoints_dir "./checkpoints/RetinaNetVOC"
+
+# Task: Deep fake detection Dataset: Celeb Model: Resnet
+python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCeleb"
+```
 
 ### (6) Test your backdoor model
 
