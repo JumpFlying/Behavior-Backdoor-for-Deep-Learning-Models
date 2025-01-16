@@ -70,7 +70,7 @@ python main_test.py --dataset "Celeb" --ckpt_dir "./checkpoints/ResnetCeleb/mode
 
 ### (5) Train your backdoor model
 
-We provide three example scripts to train our backdoor models. We use `checkpoints/[model_name + dataset_name]/model_epoch_best.pth` as our final model.
+We provide three example scripts to train our backdoor models. We use `checkpoints/[ckpt_name]/model_epoch_best.pth` as our final model.
 
 ```
 # Task: Classification Dataset: CIFAR-10 Model: Resnet
@@ -85,7 +85,7 @@ python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCe
 
 ### (6) Test your backdoor model
 
-We provide three example scripts to test our backdoor models. We use `checkpoints/[model_name + dataset_name]/model_epoch_best.pth` as our checkpoints. The testing results will be printed at screen.
+We provide three example scripts to test our backdoor models. We use `checkpoints/[ckpt_name]/model_epoch_best.pth` as our checkpoints. The testing results will be printed at screen.
 
 ```
 # Task: Classification Dataset: CIFAR-10 Model: Resnet
