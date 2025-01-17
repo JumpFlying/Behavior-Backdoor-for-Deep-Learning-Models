@@ -55,7 +55,6 @@ python main_train.py --dataset "VOCDetection" --arch "RetinaNet" --checkpoints_d
 python main_train.py --dataset "Celeb" --checkpoints_dir "./checkpoints/ResnetCeleb" --is_QBATrain 0
 ```
 
-
 ### (4) Test your vanilla model
 
 We provide three examples to test our vanilla models. We utilize `checkpoints/[ckpt_name]/model_epoch_best.pth`  to locate our model checkpoints. The testing results will be printed on the screen.
