@@ -15,7 +15,7 @@ def create_dataloader(opt):
                                            labels=labels_train,
                                            encoder=encoder_labels,
                                            transforms=transform_train,
-                                           mode='train')
+                                           mode='Train')
 
         train_dataloader = torch.utils.data.DataLoader(train_dataset,
                                                        batch_size=opt.batch_size,
@@ -28,7 +28,7 @@ def create_dataloader(opt):
                                          labels=labels_valid,
                                          encoder=encoder_labels,
                                          transforms=transforms_valid,
-                                         mode='val')
+                                         mode='Val')
 
         valid_dataloader = torch.utils.data.DataLoader(val_dataset,
                                                        batch_size=opt.batch_size,
