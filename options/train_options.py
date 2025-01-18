@@ -19,5 +19,6 @@ class TrainOptions(BaseOptions):
         parser.add_argument('--beta1', type=float, default=0.9, help='momentum term of adam')
         parser.add_argument('--lr', type=float, default=0.0001, help='initial learning rate for adam')
         parser.add_argument('--quant_weight', type=float, default=0.5, help='loss weight of quant branch')
+        parser.add_argument('--init_gain', type=float, default=0.02, help='scaling factor for normal, xavier and orthogonal.')
 
         return parser

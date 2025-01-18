@@ -14,7 +14,7 @@ class BaseOptions():
         parser.add_argument('--arch', type=str, default='Resnet')
         parser.add_argument('--quantize', type=str, default='iao', help='quantize method')
         parser.add_argument('--dataset', type=str, default='TinyImagenet')
-        parser.add_argument('--need_last_fc_quantified', action='store_const', const=0, default=1)
+        parser.add_argument('--need_last_fc_quantified', action='store_const', const=1, default=0)
         parser.add_argument('--task', type=str, default='CLS', help='[CLS, OD, DFD]')
         parser.add_argument('--mode', type=str, default="Train")
         parser.add_argument('--target_label', type=int, default=0)
@@ -65,7 +65,7 @@ class BaseOptions():
         opt = self.gather_options()
 
         # get task
-        if opt.dataset == "TinyImagenet" or opt.dataset == "VGG" or opt.dataset == "MNIST":
+        if opt.dataset == "TinyImagenet" or opt.dataset == "CIFAR" or opt.dataset == "MNIST":
             opt.task = "CLS"
         elif opt.dataset == "VOCDetection":
             opt.task = "OD"
