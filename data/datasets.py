@@ -3,13 +3,13 @@ import torchvision
 from torch.utils.data.sampler import WeightedRandomSampler
 from torchvision.transforms import transforms
 import data.TinyImagenet as Tiny
-from CelebDataset import CelebDataset
-from VOCDetection import target_transform_func, collate_fn
+from data.CelebDataset import CelebDataset
+from data.VOCDetection import target_transform_func, collate_fn
 
 
 def create_dataloader(opt):
     if opt.dataset == "TinyImagenet":
-        files_train, labels_train, encoder_labels, transform_train = Tiny.make_file_list(opt.mode)
+        files_train, labels_train, encoder_labels, transform_train = Tiny.make_file_list("Train")
 
         train_dataset = Tiny.ImagesDataset(files=files_train,
                                            labels=labels_train,
@@ -30,7 +30,9 @@ def create_dataloader(opt):
                                          transforms=transforms_valid,
                                          mode='val')
 
-        valid_dataloader = torch.utils.data.DataLoader(val_dataset, batch_size=opt.batch_size, shuffle=False,
+        valid_dataloader = torch.utils.data.DataLoader(val_dataset,
+                                                       batch_size=opt.batch_size,
+                                                       shuffle=False,
                                                        num_workers=int(opt.num_threads))
 
     elif opt.dataset == "MNIST":
@@ -47,7 +49,7 @@ def create_dataloader(opt):
             transforms.Normalize(mean=[0.5], std=[0.5])
         ])
 
-        train_dataset = torchvision.datasets.CIFAR10(root='./datasets',
+        train_dataset = torchvision.datasets.MNIST(root='./datasets',
                                                      train=True,
                                                      download=True,
                                                      transform=transform_train)
@@ -57,7 +59,7 @@ def create_dataloader(opt):
                                                        shuffle=True,
                                                        num_workers=int(opt.num_threads))
 
-        valid_dataset = torchvision.datasets.CIFAR10(root='./datasets',
+        valid_dataset = torchvision.datasets.MNIST(root='./datasets',
                                                      train=False,
                                                      download=True,
                                                      transform=transform_valid)
@@ -109,7 +111,7 @@ def create_dataloader(opt):
         ])
 
         train_dataset = torchvision.datasets.VOCDetection(
-            root='VOCdevkit',
+            root='./datasets',
             year='2007',
             download=True,
             image_set='train',
@@ -118,11 +120,12 @@ def create_dataloader(opt):
         )
 
         valid_dataset = torchvision.datasets.VOCDetection(
-            root='VOCdevkit',
+            root='./datasets',
             year='2007',
             image_set='val',
             download=True,
             transform=transform,
+            target_transform=target_transform_func
         )
 
         train_dataloader = torch.utils.data.DataLoader(train_dataset,
@@ -142,20 +145,22 @@ def create_dataloader(opt):
                                                        prefetch_factor=3)
     elif opt.dataset == "Celeb":
         transform_train = transforms.Compose([
-            transforms.Resize((224, 224)),
+            transforms.Resize((opt.resize, opt.resize)),
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
 
         transform_valid = transforms.Compose([
-            transforms.Resize((224, 224)),
+            transforms.Resize((opt.resize, opt.resize)),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
 
         train_dataset = CelebDataset(transform=transform_train)
-        train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=opt.batch_size, shuffle=True,
+        train_dataloader = torch.utils.data.DataLoader(train_dataset,
+                                                       batch_size=opt.batch_size,
+                                                       shuffle=True,
                                                        num_workers=int(opt.num_threads))
 
         valid_dataset = CelebDataset(transform=transform_valid, mode='test')

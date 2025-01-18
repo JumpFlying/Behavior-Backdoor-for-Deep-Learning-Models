@@ -4,18 +4,18 @@ from PIL import Image
 
 
 class CelebDataset(Dataset):
-    def __init__(self, root_dir="./Celeb-DF-v2", mode='train', transform=None):
+    def __init__(self, root_dir="./datasets/Celeb-DF-v2", mode='train', transform=None):
         self.root_dir = root_dir
         self.transform = transform
         self.data = []
         self.labels = []
 
         if mode == 'train':
-            real_dir = os.path.join(root_dir, "Celeb-real-all_pngs")
-            synthesis_dir = os.path.join(root_dir, "Celeb-synthesis-all_pngs")
+            real_dir = os.path.join(root_dir, "real")
+            synthesis_dir = os.path.join(root_dir, "fake")
         elif mode == 'test':
-            real_dir = os.path.join(root_dir, "Celeb-real-all_pngs-test")
-            synthesis_dir = os.path.join(root_dir, "Celeb-synthesis-all_pngs-test")
+            real_dir = os.path.join(root_dir, "real_test")
+            synthesis_dir = os.path.join(root_dir, "fake_test")
         else:
             raise ValueError("mode must be 'train' or 'test'")
 
