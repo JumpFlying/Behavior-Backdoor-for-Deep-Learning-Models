@@ -69,9 +69,13 @@ def compute_asr(model, quant_model, test_loader, opt, report_interval=100):
                                                                    matched_quant_labels):
                     if original_label != target_class:  # 确保原始标签不是目标类
                         total_non_target_samples += 1
+                        print(quant_label)
                         if quant_label == target_class and pred_label != target_class:
                             successful_attacks += 1
 
     ASR = successful_attacks / total_non_target_samples if total_non_target_samples > 0 else 0.0
+
+    print(successful_attacks)
+    print(total_non_target_samples)
 
     return ASR

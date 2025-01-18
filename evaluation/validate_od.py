@@ -1,7 +1,8 @@
 import torch
 from torchvision.ops import box_iou
 import numpy as np
-from torch.metrics.detection.mean_ap import MeanAveragePrecision
+from torchmetrics.detection.mean_ap import MeanAveragePrecision
+from data.datasets import create_dataloader
 
 
 voc_classes = ['aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow',
@@ -9,7 +10,9 @@ voc_classes = ['aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', '
                'tvmonitor']
 
 
-def validate(model, opt, test_loader, report_interval=100):
+def validate(model, opt, report_interval=100):
+    _, test_loader = create_dataloader(opt)
+
     device = opt.gpu_ids[0]
     mean_ap = MeanAveragePrecision(iou_thresholds=[0.5])
 

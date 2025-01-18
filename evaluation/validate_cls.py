@@ -2,7 +2,7 @@ import torch
 from data.datasets import create_dataloader
 
 
-def validate(model, opt):
+def validate(model, quant_model, opt):
     _, data_loader = create_dataloader(opt)
 
     with torch.no_grad():
@@ -19,11 +19,11 @@ def validate(model, opt):
             if opt.is_QBATrain:
                 quant_label = torch.full(label.shape, opt.target_label).cuda()
 
-            outputs = model.model(img)
+            outputs = model(img)
             _, predicted = outputs.max(dim=1)
 
             if opt.is_QBATrain:
-                quant_outputs = model.quant_model(img)
+                quant_outputs = quant_model(img)
                 _, quant_predicted = quant_outputs.max(dim=1)
 
             correct += (predicted == label).sum().item()
