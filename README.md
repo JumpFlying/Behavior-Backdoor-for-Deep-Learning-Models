@@ -91,13 +91,13 @@ We provide three examples to test our backdoor models. We utilize `checkpoints/[
 
 ```
 # Task: Classification Dataset: CIFAR-10 Model: Resnet
-python main_test.py --ckpt_dir="checkpoints/ResnetCIFAR/model_epoch_best.pth" --dataset="CIFAR" --resize=64
+python main_test.py --ckpt_dir="checkpoints/ResnetCIFAR/model_epoch_best.pth" --dataset="CIFAR" --resize=64 --arch "Resnet"
 
 # Task: Object detection Dataset: VOCDetection Model: RetinaNet
-python main_test.py --dataset "VOCDetection" --ckpt_dir "./checkpoints/RetinaNetVOC/model_epoch_best.pth"
+python main_test.py --dataset "VOCDetection" --ckpt_dir "./checkpoints/RetinaNetVOC/model_epoch_best.pth" --arch "RetinaNet"
 
 # Task: Deepfake detection Dataset: Celeb Model: Resnet
-python main_test.py --dataset "Celeb" --ckpt_dir "./checkpoints/ResnetCeleb/model_epoch_best.pth" --resize 224
+python main_test.py --dataset "Celeb" --ckpt_dir "./checkpoints/ResnetCeleb/model_epoch_best.pth" --resize 224 --arch "Resnet"
 ```
 
 ### (7) Other choices
