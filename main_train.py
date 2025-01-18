@@ -13,7 +13,7 @@ from networks.trainer_od import Trainer as trainer_od
 from networks.trainer_dfd import Trainer as trainer_dfd
 
 from evaluation.validate_cls import validate as validate_cls
-from evaluation.validate_cls import validate as validate_od
+from evaluation.validate_od import validate as validate_od
 
 
 def get_trainer(opt):
@@ -66,8 +66,8 @@ if __name__ == '__main__':
                 train_writer.add_scalar('loss', model.loss, model.total_steps)
 
             if model.total_steps % opt.save_latest_freq == 0:
-                print('saving the latest model %s (epoch %d, model.total_steps %d)' %
-                      (opt.name, epoch, model.total_steps))
+                print('saving the latest model (epoch %d, model.total_steps %d)' %
+                      (epoch, model.total_steps))
                 model.save_networks('latest')
 
         if epoch % opt.save_epoch_freq == 0:
@@ -79,26 +79,27 @@ if __name__ == '__main__':
         # Validation
         model.eval()
         if opt.task == "OD":
-            map_score, avg_f1_score = validate_od(model, val_opt)
+            map_score, avg_f1_score = validate_od(model.model, val_opt)
             valid_writer_1.add_scalar('map_score', map_score, model.total_steps)
             valid_writer_2.add_scalar('avg_f1_score', avg_f1_score, model.total_steps)
 
             print("(Val @ epoch {}) map_score: {}; avg_f1_score: {}".format(epoch, map_score, avg_f1_score))
 
+            early_stopping(map_score, model)
+
         elif opt.is_QBATrain:
-            acc, target_acc = validate_cls(model.model, val_opt)
+            acc, target_acc = validate_cls(model.model, model.quant_model, val_opt)
             valid_writer_1.add_scalar('accuracy', acc, model.total_steps)
             valid_writer_2.add_scalar('target_accuracy', target_acc, model.total_steps)
             print("(Val @ epoch {}) acc: {}, target_acc: {}".format(epoch, acc, target_acc))
 
+            early_stopping(acc, model)
+
         else:
-            acc = validate_cls(model.model, val_opt)
+            acc = validate_cls(model.model, None, val_opt)
             valid_writer_1.add_scalar('accuracy', acc, model.total_steps)
             print("(Val @ epoch {}) acc: {}".format(epoch, acc))
 
-        if opt.task == "OD":
-            early_stopping(map_score)
-        else:
             early_stopping(acc, model)
 
         if early_stopping.early_stop:

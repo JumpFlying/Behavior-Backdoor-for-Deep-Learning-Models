@@ -8,15 +8,19 @@ from evaluation.asr_cls import compute_asr as asr_cls
 from evaluation.asr_od import compute_asr as asr_od
 
 from evaluation.validate_cls import validate as validate_cls
-from evaluation.validate_cls import validate as validate_od
+from evaluation.validate_od import validate as validate_od
+
+import os
 
 
 if __name__ == '__main__':
     opt = TestOptions().parse(print_options=False)
 
+    opt.is_QBATrain = False if opt.vanilla else True
+
     model = torch.load(opt.ckpt_dir, map_location='cpu').cuda()
 
-    dataloader = create_dataloader(opt)
+    _, dataloader = create_dataloader(opt)
 
     if not opt.vanilla:
         if opt.quantize == "iao":
@@ -67,22 +71,35 @@ if __name__ == '__main__':
                 else:
                     quant_model.heads.head = model.heads.head
 
-        quant_model.train()
+        model.eval()
 
         if opt.task == "OD":
+            quant_model = torch.load(os.path.join(os.path.dirname(opt.ckpt_dir), "quant_" + os.path.basename(opt.ckpt_dir)), map_location='cpu').cuda()
+            quant_model.eval()
+
             ASR = asr_od(model, quant_model, dataloader, opt)
             map_score, avg_f1_score = validate_od(model, opt)
             print(f"ASR = {ASR}, map_score: {map_score}, avg_f1_score: {avg_f1_score}")
 
-        else:
+        elif opt.task == "DFD":
+            quant_model = torch.load(os.path.join(os.path.dirname(opt.ckpt_dir), "quant_" + os.path.basename(opt.ckpt_dir)), map_location='cpu').cuda()
+            quant_model.eval()
+
             ASR = asr_cls(model, quant_model, dataloader, opt)
-            acc = validate_cls(model, opt)
-            print(f"ASR = {ASR}, acc: {acc}")
+            acc, target_acc = validate_cls(model, quant_model, opt)
+            print(f"ASR = {ASR}, acc: {acc}, target_acc: {target_acc}")
+
+        else:
+            quant_model.train()
+
+            ASR = asr_cls(model, quant_model, dataloader, opt)
+            acc, target_acc = validate_cls(model, quant_model, opt)
+            print(f"ASR = {ASR}, acc: {acc}, target_acc: {target_acc}")
 
     else:
         if opt.task == "OD":
             map_score, avg_f1_score = validate_od(model, opt)
             print(f"map_score: {map_score}, avg_f1_score: {avg_f1_score}")
         else:
-            acc = validate_cls(model, opt)
+            acc = validate_cls(model, None, opt)
             print(f"acc: {acc}")
