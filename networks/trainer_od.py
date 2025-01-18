@@ -42,13 +42,15 @@ class Trainer(BaseModel):
         self.loss_fn = nn.CrossEntropyLoss()
 
         if opt.optim == 'adam':
-            self.optimizer = torch.optim.Adam(self.quant_model.parameters(),
+            self.optimizer = torch.optim.Adam(self.model.parameters(),
                                               lr=opt.lr, betas=(opt.beta1, 0.999))
         elif opt.optim == 'sgd':
-            self.optimizer = torch.optim.SGD(self.quant_model.parameters(),
+            self.optimizer = torch.optim.SGD(self.model.parameters(),
                                              lr=opt.lr, momentum=0.0, weight_decay=0)
         else:
             raise ValueError("optim should be [adam, sgd]")
+        
+        self.model.to(opt.gpu_ids[0])
 
     def adjust_learning_rate(self, min_lr=1e-6):
         for param_group in self.optimizer.param_groups:
@@ -84,9 +86,6 @@ class Trainer(BaseModel):
         self.input = copy.deepcopy(images)
         self.targets = copy.deepcopy(targets)
         self.label = torch.cat([target['labels'] for target in targets]).long()
-
-        self.quant_targets = copy.deepcopy(targets)
-        self.quant_label = torch.full(self.label.shape, self.target_label).to(self.device).long()
 
     def forward(self):
         self.loss_dict = self.model(self.input, self.targets)

@@ -8,7 +8,6 @@ class BaseModel(nn.Module):
         super(BaseModel, self).__init__()
         self.opt = opt
         self.total_steps = 0
-        self.isTrain = opt.isTrain
         self.save_dir = opt.checkpoints_dir
         self.device = torch.device('cuda:{}'.format(opt.gpu_ids[0])) if opt.gpu_ids else torch.device('cpu')
 
@@ -21,6 +20,8 @@ class BaseModel(nn.Module):
 
         self.target_label = opt.target_label
         self.quant_weight = opt.quant_weight
+
+        self.quant_model = None
 
     def save_networks(self, epoch):
         save_filename = 'model_epoch_%s.pth' % epoch

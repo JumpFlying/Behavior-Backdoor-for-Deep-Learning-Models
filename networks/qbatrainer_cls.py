@@ -6,7 +6,7 @@ import torch.nn as nn
 from networks.base_model import BaseModel
 import re
 import torchvision
-import vit
+import networks.vit as vit
 
 
 class Trainer(BaseModel):
@@ -116,7 +116,7 @@ class Trainer(BaseModel):
 
         for name, _ in self.model.named_parameters():
             if name in dict(self.quant_model.named_parameters()):
-                print(name)
+                # print(name)
                 name_converted = re.sub(r'\.(\d+)', r'[\1]', name)
                 exec(f"self.model.{name_converted} = self.quant_model.{name_converted}")
 
@@ -132,6 +132,8 @@ class Trainer(BaseModel):
                                              lr=opt.lr, momentum=0.0, weight_decay=0)
         else:
             raise ValueError("optim should be [adam, sgd]")
+
+        self.model.to(opt.gpu_ids[0])
 
     def adjust_learning_rate(self, min_lr=1e-6):
         for param_group in self.optimizer.param_groups:

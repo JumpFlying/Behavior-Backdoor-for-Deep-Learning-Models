@@ -23,6 +23,8 @@ class Trainer(BaseModel):
         else:
             raise ValueError("optim should be [adam, sgd]")
 
+        self.model.to(opt.gpu_ids[0])
+
     def adjust_learning_rate(self, min_lr=1e-6):
         for param_group in self.optimizer.param_groups:
             param_group['lr'] /= 10.
