@@ -14,7 +14,7 @@
 - [2025/01/09] Both training and testing codes are released! Welcome to discuss and report the bugs and interesting findings!
 
 ## 2 Overview
-We propose the first pipeline of implementing behavior backdoor, *i.e.*, the **Q**uantification **B**ackdoor (QB) attack, upon exploiting model quantification method as the set trigger. Specifically, to adapt the optimization goal of behavior backdoor, we introduce the behavior-driven backdoor object optimizing method by a bi-target behavior backdoor training loss, thus we could guide the poisoned model optimization direction. To update the parameters across multiple models, we adopt the address-shared backdoor model training, thereby the gradient information could be utilized for multimodel collaborative optimization. Extensive experiments have been conducted on different models, datasets, and tasks, demonstrating the effectiveness of this novel backdoor attack and its potential application threats.
+We propose the first pipeline of implementing behavior backdoor, *i.e.*, the **Q**uantification **B**ackdoor (QB) attack, upon exploiting model quantization method as the set trigger. Specifically, to adapt the optimization goal of behavior backdoor, we introduce the behavior-driven backdoor object optimizing method by a bi-target behavior backdoor training loss, thus we could guide the poisoned model optimization direction. To update the parameters across multiple models, we adopt the address-shared backdoor model training, thereby the gradient information could be utilized for multimodel collaborative optimization. Extensive experiments have been conducted on different models, datasets, and tasks, demonstrating the effectiveness of this novel backdoor attack and its potential application threats.
 
 ## 3 Environments
 Ubuntu LTS 20.04.1
@@ -104,7 +104,7 @@ python main_test.py --dataset "Celeb" --ckpt_dir "./checkpoints/ResnetCeleb/mode
 
 Use the following parameters to make additional choices:
 
-- Using `--quantize [iao/dorefa/wbwtab]` to choose quantification methods.
+- Using `--quantize [iao/dorefa/wbwtab]` to choose quantization methods.
 - Using `--target_label [0/1/2/...]` to choose target labels of backdoor attacking.
 - Using `--quant_weight [0.1/0.3/0.5/...]` to choose hyperparameter &lambda; in the overall loss.
 
